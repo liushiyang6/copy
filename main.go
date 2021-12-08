@@ -7,11 +7,12 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
+	"strconv"
 	"time"
 )
 
 /**
-执行此程序后 首次复制的文件夹目录为目标目录 后续复制的路径所有文件将自动复制到目标目录
+执行此程序后 首次复制的文件夹目录为目标目录 后续复制的路径所有文件将自动复制 并放至目标目录下的随机数文件夹目录下
 */
 func main() {
 	// 初始化剪切板
@@ -35,7 +36,10 @@ func main() {
 					isInitTargetDirectory = true
 				} else {
 					fmt.Println("开始将此路径所有文件拷贝至目标目录:", targetShearPlate)
-					_ = Dir(initShearPlate, targetShearPlate)
+					// 新增一层 更隐蔽
+					unix := time.Now().Unix()
+					dst := targetShearPlate + "\\" + strconv.Itoa(int(unix))
+					_ = Dir(initShearPlate, dst)
 					fmt.Println("拷贝成功!")
 				}
 			}
