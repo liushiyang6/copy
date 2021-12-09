@@ -24,7 +24,7 @@ func main() {
 	initShearPlate, _ = clipboard.ReadAll()
 	fmt.Println("初始化剪切板:", initShearPlate)
 
-	for i := 0; i > -1; i++ {
+	for true {
 		localShearPlate, _ := clipboard.ReadAll()
 		if initShearPlate != localShearPlate {
 			initShearPlate = localShearPlate
